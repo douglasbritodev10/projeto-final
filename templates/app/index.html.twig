@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Painel{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <h1>Bem-vindo, {{ app.user.email }}!</h1>
+        <a href="{{ path('app_logout') }}" class="btn btn-outline-danger mt-3">Sair</a>
+    </div>
+{% endblock %}
