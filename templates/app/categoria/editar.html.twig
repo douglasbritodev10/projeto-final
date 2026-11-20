@@ -1,0 +1,16 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block title %}Editar categoria{% endblock %}
+
+{% block conteudo %}
+    <h1>Editar categoria</h1>
+
+    <form action="{{ path('atualizar_categoria', {id: categoria.id}) }}" method="POST" class="w-50 mt-3">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ categoria.nome }}" maxlength="50" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{{ path('listar_categorias') }}" class="btn btn-secondary">Voltar</a>
+    </form>
+{% endblock %}

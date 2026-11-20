@@ -12,6 +12,7 @@
             <tr>
                 <th>ID</th>
                 <th>Nome</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +20,13 @@
                 <tr>
                     <td>{{ categoria.id }}</td>
                     <td>{{ categoria.nome }}</td>
+                    <td>
+                        <a href="{{ path('editar_categoria', {id: categoria.id}) }}" class="btn btn-sm btn-outline-primary">Editar</a>
+                    </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="2">Nenhuma categoria cadastrada.</td>
+                    <td colspan="3">Nenhuma categoria cadastrada.</td>
                 </tr>
             {% endfor %}
         </tbody>
