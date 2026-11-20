@@ -1,0 +1,30 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block title %}Categorias{% endblock %}
+
+{% block conteudo %}
+    <h1>Categorias</h1>
+
+    <a href="{{ path('cadastrar_categoria') }}" class="btn btn-primary mb-3">Nova categoria</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+                <tr>
+                    <td>{{ categoria.id }}</td>
+                    <td>{{ categoria.nome }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2">Nenhuma categoria cadastrada.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
