@@ -1,0 +1,36 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block title %}Produtos{% endblock %}
+
+{% block conteudo %}
+    <h1>Produtos</h1>
+
+    <a href="{{ path('cadastrar_produto') }}" class="btn btn-primary mb-3">Novo produto</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Estoque</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+                <tr>
+                    <td>{{ produto.id }}</td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.categoria.nome }}</td>
+                    <td>{{ produto.quantidadeDisponivel }}</td>
+                    <td>R$ {{ produto.valor|number_format(2, ',', '.') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">Nenhum produto cadastrado.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

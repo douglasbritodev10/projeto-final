@@ -1,0 +1,37 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block title %}Novo produto{% endblock %}
+
+{% block conteudo %}
+    <h1>Novo produto</h1>
+
+    <form action="{{ path('salvar_produto') }}" method="POST" class="w-50 mt-3">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" maxlength="100" required>
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <select class="form-select" id="categoria" name="categoria" required>
+                <option value="">Selecione...</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="quantidade" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="quantidade" name="quantidade" min="0" value="0" required>
+        </div>
+        <div class="mb-3">
+            <label for="valor" class="form-label">Valor (R$)</label>
+            <input type="number" class="form-control" id="valor" name="valor" min="0.01" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <a href="{{ path('listar_produtos') }}" class="btn btn-secondary">Voltar</a>
+    </form>
+{% endblock %}
