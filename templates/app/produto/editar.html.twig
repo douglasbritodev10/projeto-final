@@ -1,0 +1,32 @@
+{% extends 'app/layout.html.twig' %}
+
+{% block title %}Editar produto{% endblock %}
+
+{% block conteudo %}
+    <h1>Editar produto</h1>
+
+    <form action="{{ path('atualizar_produto', {id: produto.id}) }}" method="POST" class="w-50 mt-3">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="{{ produto.nome }}" maxlength="100" required>
+        </div>
+        <div class="mb-3">
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3">{{ produto.descricao }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="categoria" class="form-label">Categoria</label>
+            <select class="form-select" id="categoria" name="categoria" required>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}" {% if categoria.id == produto.categoria.id %}selected{% endif %}>{{ categoria.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="valor" class="form-label">Valor (R$)</label>
+            <input type="number" class="form-control" id="valor" name="valor" value="{{ produto.valor }}" min="0.01" step="0.01" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{{ path('listar_produtos') }}" class="btn btn-secondary">Voltar</a>
+    </form>
+{% endblock %}

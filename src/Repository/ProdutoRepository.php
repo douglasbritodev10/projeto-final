@@ -22,6 +22,12 @@ class ProdutoRepository extends ServiceEntityRepository
         $this->getEntityManager()->flush();
     }
 
+    public function remover(Produto $produto): void
+    {
+        $this->getEntityManager()->remove($produto);
+        $this->getEntityManager()->flush();
+    }
+
 //    /**
 //     * @return Produto[] Returns an array of Produto objects
 //     */
