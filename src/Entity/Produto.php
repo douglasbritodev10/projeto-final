@@ -36,6 +36,9 @@ class Produto
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $valor = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagemUrl = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +124,18 @@ class Produto
     public function setValor(string $valor): static
     {
         $this->valor = $valor;
+
+        return $this;
+    }
+
+    public function getImagemUrl(): ?string
+    {
+        return $this->imagemUrl;
+    }
+
+    public function setImagemUrl(?string $imagemUrl): static
+    {
+        $this->imagemUrl = $imagemUrl;
 
         return $this;
     }
