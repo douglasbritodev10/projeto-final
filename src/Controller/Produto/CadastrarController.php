@@ -34,6 +34,7 @@ class CadastrarController extends AbstractController
         $categoria = $this->categoriaRepository->find($request->request->getInt('categoria'));
         $quantidade = $request->request->getInt('quantidade');
         $valor = $request->request->getString('valor');
+        $imagemUrl = $request->request->getString('imagem_url');
 
         if ($nome === '' || mb_strlen($nome) > 100) {
             $this->addFlash('danger', 'Informe um nome com até 100 caracteres.');
@@ -53,6 +54,12 @@ class CadastrarController extends AbstractController
             return $this->redirectToRoute('cadastrar_produto');
         }
 
+        if($imagemUrl !== '' && !filter_var($imagemUrl, FILTER_VALIDATE_URL)) {
+            $this->addFlash('danger', 'Informe uma URL válida para a imagem.');
+
+            return $this->redirectToRoute('cadastrar_produto');
+        }
+
         $produto = new Produto();
         $produto->setNome($nome);
         $produto->setDescricao($descricao);
@@ -61,6 +68,7 @@ class CadastrarController extends AbstractController
         $produto->setQuantidadeInicial($quantidade);
         $produto->setQuantidadeDisponivel($quantidade);
         $produto->setValor($valor);
+        $produto->setImagemUrl($imagemUrl ?: null);
 
         $this->produtoRepository->salvar($produto);
 
